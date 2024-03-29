@@ -4,7 +4,7 @@ import { MenuItem } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { useDispatch } from "react-redux";
-import { setValue } from "../store/amountOfTags-slice";
+import { setValue } from "../store/amountOfTagsSlice";
 
 const SelectAmountOfElements = () => {
   const dispatch = useDispatch();
