@@ -1,35 +1,30 @@
 import { useQuery } from "@tanstack/react-query";
+import { Box } from "@mui/joy";
+
 import Header from "../components/Header";
 import { fetchTags } from "../api/homePageLoader";
-import { Card, Chip, Link, List, ListItem } from "@mui/joy";
-import { FetchedTagData } from "../model/FetchedTagData";
+import SelectAmountOfElements from "../components/SelectAmountOfElements";
+import ListTags from "../components/ListTags";
+import SortTags from "../components/SortTags";
+
 
 const HomePage = () => {
-  const { data, isPending, isError, error } = useQuery({
+  const { data, isPending, isError, error, isRefetching } = useQuery({
     queryKey: ["tags"],
     queryFn: fetchTags,
   });
-
+  
   return (
     <>
       <Header />
       <main>
-        {isPending && <p>Loading...</p>}
+        <Box className="flex gap-x-4 mb-6">
+          <SortTags />
+          <SelectAmountOfElements />
+        </Box>
+        {isPending || isRefetching && <p>Loading...</p>}
         {isError && <p className="text-red-500">{error.message}</p>}
-        {!isPending && !isError && (
-          <List>
-            {data.map((tag: FetchedTagData) => (
-              <ListItem key={tag.name}>
-                <Card>
-                  <Link underline="none">
-                    <Chip>{tag.name}</Chip>
-                  </Link>
-                  <p>{tag.count} questions</p>
-                </Card>
-              </ListItem>
-            ))}
-          </List>
-        )}
+        {!isPending && !isError && !isRefetching && <ListTags tags={data} />}
       </main>
     </>
   );
