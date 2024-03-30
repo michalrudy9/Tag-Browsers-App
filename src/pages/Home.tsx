@@ -2,18 +2,17 @@ import { useQuery } from "@tanstack/react-query";
 import { Box } from "@mui/joy";
 
 import Header from "../components/Header";
-import { fetchTags } from "../api/homePageLoader";
+import { fetchTags } from "../api/homePageFunctions";
 import SelectAmountOfElements from "../components/SelectAmountOfElements";
 import ListTags from "../components/ListTags";
 import SortTags from "../components/SortTags";
-
 
 const HomePage = () => {
   const { data, isPending, isError, error, isRefetching } = useQuery({
     queryKey: ["tags"],
     queryFn: fetchTags,
   });
-  
+
   return (
     <>
       <Header />
@@ -22,7 +21,8 @@ const HomePage = () => {
           <SortTags />
           <SelectAmountOfElements />
         </Box>
-        {isPending || isRefetching && <p>Loading...</p>}
+        {isPending && <p>Loading...</p>}
+        {isRefetching && <p>Applying selected changes...</p>}
         {isError && <p className="text-red-500">{error.message}</p>}
         {!isPending && !isError && !isRefetching && <ListTags tags={data} />}
       </main>
