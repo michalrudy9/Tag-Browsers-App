@@ -2,25 +2,36 @@ import { Box } from "@mui/joy";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
 import { useQueryClient } from "@tanstack/react-query";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useDispatch } from "react-redux";
-import { setValue } from "../store/amountOfTagsSlice";
+import { setAmount } from "../store/amountOfTagsSlice";
+import { setSubmitter } from "../store/firstSubmitterSlice";
+import { RootState } from "../store/store";
 
 const SelectAmountOfElements = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+  const amountOfTags = useSelector<RootState, string>(
+    (state) => state.amountOfTags.amount
+  );
 
   const changeHandler = (event: SelectChangeEvent) => {
     const amount = event.target.value;
 
-    dispatch(setValue(amount));
+    dispatch(setSubmitter("amount"));
+    dispatch(setAmount(amount));
+
     queryClient.refetchQueries({ queryKey: ["tags"] });
   };
 
   return (
     <Box className="flex gap-x-4 items-center w-fit">
       Amount of elements
-      <Select defaultValue={"all"} onChange={changeHandler}>
+      <Select
+        defaultValue={"all"}
+        value={amountOfTags}
+        onChange={changeHandler}
+      >
         <MenuItem value="10">10</MenuItem>
         <MenuItem value="20">20</MenuItem>
         <MenuItem value="30">30</MenuItem>
