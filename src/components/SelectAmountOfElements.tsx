@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAmount } from "../store/amountOfTagsSlice";
 import { setSubmitter } from "../store/firstSubmitterSlice";
 import { RootState } from "../store/store";
+import { setToField } from "../store/rangeTagsSlice";
 
 const SelectAmountOfElements = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const SelectAmountOfElements = () => {
 
     dispatch(setSubmitter("amount"));
     dispatch(setAmount(amount));
+    dispatch(setToField(parseInt(amount)));
 
     queryClient.refetchQueries({ queryKey: ["tags"] });
   };
