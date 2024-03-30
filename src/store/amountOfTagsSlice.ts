@@ -6,11 +6,11 @@ const amountOfTagsSlice = createSlice({
   name: "amountOfTags",
   initialState: initialState,
   reducers: {
-    setValue: (state, action) => {
+    setAmount: (state, action) => {
       state.amount = action.payload;
     },
   },
 });
 
-export const { setValue } = amountOfTagsSlice.actions;
+export const { setAmount } = amountOfTagsSlice.actions;
 export default amountOfTagsSlice;

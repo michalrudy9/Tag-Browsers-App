@@ -18,6 +18,7 @@ export const fetchTags = async (): Promise<FetchedTagData[]> => {
   items = responseData.items;
 
   checkIfSetAmountOfTags();
+  checkIfSortTags();
 
   return items;
 };
@@ -31,6 +32,34 @@ const checkIfSetAmountOfTags = () => {
 
     if (parseAmount) {
       items = items.splice(0, parseAmount);
+    }
+  }
+};
+
+const checkIfSortTags = () => {
+  const { sortTags } = store.getState();
+
+  if (sortTags.name !== "popular" || sortTags.direction !== "descending") {
+    if (sortTags.name === "tag") {
+      const descendingSortByTag = items.sort(
+        (firstItem: FetchedTagData, secondItem: FetchedTagData) =>
+          firstItem.name.localeCompare(secondItem.name)
+      );
+
+      if (sortTags.direction === "descending") {
+        items = descendingSortByTag;
+      }
+
+      if (sortTags.direction === "ascending") {
+        items = descendingSortByTag.reverse();
+      }
+    }
+
+    if (sortTags.name === "popular" && sortTags.direction === "ascending") {
+      items = items.sort(
+        (firstItem: FetchedTagData, secondItem: FetchedTagData) =>
+          firstItem.count - secondItem.count
+      );
     }
   }
 };
