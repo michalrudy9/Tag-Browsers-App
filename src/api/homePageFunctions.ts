@@ -17,10 +17,22 @@ export const fetchTags = async (): Promise<FetchedTagData[]> => {
   const responseData = await response.json();
   items = responseData.items;
 
-  checkIfSetAmountOfTags();
-  checkIfSortTags();
+  checkWhichWasFirstSubmitter();
 
   return items;
+};
+
+const checkWhichWasFirstSubmitter = () => {
+  const { firstSubmitter } = store.getState();
+
+  if (firstSubmitter.submitter === "amount") {
+    checkIfSortTags();
+    checkIfSetAmountOfTags();
+  }
+  if (firstSubmitter.submitter === "sort") {
+    checkIfSetAmountOfTags();
+    checkIfSortTags();
+  }
 };
 
 const checkIfSetAmountOfTags = () => {
