@@ -2,12 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Box, IconButton } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { RootState } from "../store/store";
 import { getAmountOfData } from "../api/homePageFunctions";
 import { RangeTags, setRange } from "../store/rangeTagsSlice";
 
 const RangeResultsDisaplay = () => {
+  const queryClient = useQueryClient();
   const dispatch = useDispatch();
   const rangeTags = useSelector<RootState, RangeTags>(
     (state) => state.rangeTags
@@ -22,6 +24,7 @@ const RangeResultsDisaplay = () => {
     dispatch(
       setRange({ receiveAmount: parseInt(amountOfTags), action: action })
     );
+    queryClient.refetchQueries({ queryKey: ["tags"] });
   };
 
   return (

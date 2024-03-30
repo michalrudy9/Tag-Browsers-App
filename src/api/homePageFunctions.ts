@@ -2,6 +2,7 @@ import { FetchedTagData } from "../model/FetchedTagData";
 import store from "../store/store";
 
 let items: FetchedTagData[] = [];
+let totalAmountData = 0;
 
 export const fetchTags = async (): Promise<FetchedTagData[]> => {
   // const response = await fetch(
@@ -16,6 +17,7 @@ export const fetchTags = async (): Promise<FetchedTagData[]> => {
 
   const responseData = await response.json();
   items = responseData.items;
+  totalAmountData = items.length;
 
   checkWhichWasFirstSubmitter();
 
@@ -43,7 +45,7 @@ const checkIfSetAmountOfTags = () => {
     const parseAmount = parseInt(amount);
 
     if (parseAmount) {
-      items = items.splice(0, parseAmount);
+      setSuitableSplittedItemsArray();
     }
   }
 };
@@ -74,4 +76,23 @@ const checkIfSortTags = () => {
       );
     }
   }
+};
+
+const setSuitableSplittedItemsArray = () => {
+  const chunkSize = parseInt(store.getState().amountOfTags.amount);
+  const to = store.getState().rangeTags.to;
+  const splittedItemsArray: FetchedTagData[][] = [];
+
+  for (let i = 0; i < items.length; i += chunkSize) {
+    const chunk = items.slice(i, i + chunkSize);
+    splittedItemsArray.push(chunk);
+  }
+
+  const index = to / chunkSize - 1;
+
+  items = splittedItemsArray[index];
+};
+
+export const getAmountOfData = (): number => {
+  return totalAmountData;
 };
