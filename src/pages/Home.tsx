@@ -9,7 +9,7 @@ import ListTags from "../components/ListTags";
 import SortTags from "../components/SortTags";
 import RangeResultsDisaplay from "../components/RangeResultsDisplay";
 import { RootState } from "../store/store";
-import LoadingSpinner from "../components/LoadingSpinner";
+import ProgressTags from "../components/progress/ProgressTags";
 import ErrorAlert from "../components/ErrorAlert";
 
 const HomePage = () => {
@@ -30,23 +30,16 @@ const HomePage = () => {
           <SelectAmountOfElements />
         </Box>
         <Box>
-          {isPending && (
-            <LoadingSpinner text="Loading..." position="absolute" />
-          )}
-          {isRefetching && (
-            <LoadingSpinner
-              text="Applying selected changes..."
-              position="absolute"
-            />
-          )}
+          {isPending && <ProgressTags />}
+          {isRefetching && <ProgressTags />}
           {isError && (
             <ErrorAlert message={error.message} position="absolute" />
           )}
           {!isPending && !isError && !isRefetching && (
-            <Box>
+            <>
               <ListTags tags={data} />
               {amountOfTags !== "all" && <RangeResultsDisaplay />}
-            </Box>
+            </>
           )}
         </Box>
       </main>
