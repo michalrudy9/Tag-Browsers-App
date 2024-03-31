@@ -29,6 +29,7 @@ const SortTags = () => {
         defaultValue={"popular-descending"}
         onChange={changeHandler}
         className="w-[14rem]"
+        size="small"
       >
         <MenuItem value="tag-descending">Tag name - descending</MenuItem>
         <MenuItem value="tag-ascending">Tag name - ascending</MenuItem>

@@ -25,7 +25,7 @@ const HomePage = () => {
     <>
       <Header />
       <main>
-        <Box className="flex gap-x-4 mb-6">
+        <Box className="flex flex-wrap justify-center md:justify-end gap-4 mb-6">
           <SortTags />
           <SelectAmountOfElements />
         </Box>

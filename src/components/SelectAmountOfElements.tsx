@@ -33,6 +33,7 @@ const SelectAmountOfElements = () => {
         defaultValue={"all"}
         value={amountOfTags}
         onChange={changeHandler}
+        size="small"
       >
         <MenuItem value="10">10</MenuItem>
         <MenuItem value="20">20</MenuItem>

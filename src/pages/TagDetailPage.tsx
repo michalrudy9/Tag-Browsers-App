@@ -22,7 +22,7 @@ const TagDetailPage = () => {
       <Box className="sm:w-[85%] h-screen">
         {isPending && <ProgressQuestions />}
         {isError && <ErrorAlert message={error.message} position="relative" />}
-        {data && data.length === 0 && (
+        {!isPending && !isError && data && data.length === 0 && (
           <p className="text-gray-400 font-light !text-center !text-xl absolute left-[50%] sm:left-[57%] top-[50%] -translate-x-[50%] -translate-y-[50%]">
             There are not posts in {tagName} tag
           </p>
