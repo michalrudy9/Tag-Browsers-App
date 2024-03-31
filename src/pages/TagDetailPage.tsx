@@ -20,8 +20,8 @@ const TagDetailPage = () => {
     <main className="sm:flex">
       <SideBar />
       <Box className="sm:w-[85%] h-screen">
-        {isPending && <LoadingSpinner text="Loading..." />}
-        {isError && <ErrorAlert message={error.message} />}
+        {isPending && <LoadingSpinner text="Loading..." position="relative" />}
+        {isError && <ErrorAlert message={error.message} position="relative" />}
         {!isPending && !isError && <ListQuestions questions={data} />}
       </Box>
     </main>
