@@ -10,7 +10,7 @@ const QuestionAuthor: React.FC<{
   };
 }> = ({ owner }) => {
   return (
-    <Box className="w-[40%] flex justify-end items-center gap-x-4">
+    <Box className="flex justify-end items-center gap-x-4">
       <Avatar
         alt={owner.display_name}
         src={owner.profile_image}

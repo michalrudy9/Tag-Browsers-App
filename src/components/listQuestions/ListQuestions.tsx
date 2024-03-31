@@ -13,7 +13,7 @@ const ListQuestions: React.FC<{ questions: QuestionData[] }> = ({
   return (
     <List>
       {questions.map((question: QuestionData) => (
-        <ListItem key={question.question_id}>
+        <ListItem key={question.question_id} className="!px-0 sm:!px-3">
           <Card className="!flex !flex-row !items-center w-full">
             <PostStatistics
               score={question.score}
@@ -24,7 +24,7 @@ const ListQuestions: React.FC<{ questions: QuestionData[] }> = ({
               <Link component={RouterLink} to={question.link} underline="none">
                 {question.title}
               </Link>
-              <Box className="flex">
+              <Box className="flex justify-between flex-wrap">
                 <QuestionTags tags={question.tags} />
                 <QuestionAuthor owner={question.owner} />
               </Box>

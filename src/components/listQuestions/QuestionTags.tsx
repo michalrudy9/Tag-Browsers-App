@@ -4,7 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const QuestionTags: React.FC<{ tags: string[] }> = ({ tags }) => {
   return (
-    <Box className="w-[60%]">
+    <Box>
       {tags.map((tag: string) => (
         <Link key={tag} component={RouterLink} to={`/${tag}`} underline="none">
           <Chip size="sm" color="primary" className="mr-2">
