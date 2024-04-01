@@ -2,11 +2,11 @@ import { FetchedQuestionData } from "../model/FetchedQuestionData";
 import { QuestionData } from "../model/QuestionData";
 
 export const fetchPosts = async (tagName: string | undefined) => {
-  // const response = await fetch(
-  //   "https://api.stackexchange.com/2.3/tags?order=desc&sort=popular&site=stackoverflow"
-  // );
+  const response = await fetch(
+    "https://api.stackexchange.com/2.3/questions?order=desc&sort=activity&site=stackoverflow"
+  );
 
-  const response = await fetch("http://localhost:8080/questions");
+  // const response = await fetch("http://localhost:8080/questions");
 
   if (!response.ok) {
     throw new Error("An error occurred while fetching questions !");

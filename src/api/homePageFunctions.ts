@@ -5,11 +5,11 @@ let items: FetchedTagData[] = [];
 let totalAmountData = 0;
 
 export const fetchTags = async (): Promise<FetchedTagData[]> => {
-  // const response = await fetch(
-  //   "https://api.stackexchange.com/2.3/tags?order=desc&sort=popular&site=stackoverflow"
-  // );
+  const response = await fetch(
+    "https://api.stackexchange.com/2.3/tags?order=desc&sort=popular&site=stackoverflow"
+  );
 
-  const response = await fetch("http://localhost:8080/tags");
+  // const response = await fetch("http://localhost:8080/tags");
 
   if (!response.ok) {
     throw new Error("An error occurred while fetching tags !");
