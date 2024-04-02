@@ -4,6 +4,7 @@ import ErrorAlert from "../components/ErrorAlert";
 const meta = {
   title: "Tag Browser App/Error",
   component: ErrorAlert,
+  tags: ["autodocs"],
 } satisfies Meta<typeof ErrorAlert>;
 
 export default meta;

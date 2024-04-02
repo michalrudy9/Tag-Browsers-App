@@ -4,6 +4,7 @@ import ProgressTags from "../components/progress/ProgressTags";
 const meta = {
   title: "Tag Browser App/Progress/Tags",
   component: ProgressTags,
+  tags: ["autodocs"],
 } satisfies Meta<typeof ProgressTags>;
 
 export default meta;
