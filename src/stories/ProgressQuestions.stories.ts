@@ -5,6 +5,9 @@ const meta = {
   title: "Tag Browser App/Progress/Questions",
   component: ProgressQuestions,
   tags: ["autodocs"],
+  parameters: {
+    componentSubtitle: "Displays placeholder skeleton for question components.",
+  },
 } satisfies Meta<typeof ProgressQuestions>;
 
 export default meta;

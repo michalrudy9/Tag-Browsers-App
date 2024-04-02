@@ -5,6 +5,10 @@ const meta = {
   title: "Tag Browser App/Error",
   component: ErrorAlert,
   tags: ["autodocs"],
+  parameters: {
+    componentSubtitle:
+      "Displays error message when something will go wrong while fetching tags.",
+  },
 } satisfies Meta<typeof ErrorAlert>;
 
 export default meta;
